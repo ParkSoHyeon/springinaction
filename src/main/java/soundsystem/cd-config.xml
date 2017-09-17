@@ -3,7 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder />
 
     <!--<bean id="compactDisc" class="soundsystem.SgtPeppers"/>-->
     <!--<bean id="compactDisc" class="soundsystem.BlankDisc"-->
@@ -24,6 +27,13 @@
             <!--</set>&lt;!&ndash;</list>&ndash;&gt;-->
         <!--</constructor-arg>-->
     <!--</bean>-->
+
+    <bean id="sgtPeppers"
+    class="soundsystem.BlankDisc"
+          c:title="#{systemProperties['disc.title']}"
+          c:artist="#{systemProperties['disc.artist']}"/>
+          <!--c:_0="${disc.title}"-->
+          <!--c:_1="${disc.artist}"-->
 
     <bean id="cdPlayer" class="soundsystem.CDPlayer" p:compactDisc-ref="reallyBlankDisc">
         <!--c:cd-ref="compactDisc" c:_0="compactDisc"-->
@@ -55,4 +65,6 @@
         <value>music04</value>
         <value>music05</value>
     </util:list>
+
+
 </beans>
