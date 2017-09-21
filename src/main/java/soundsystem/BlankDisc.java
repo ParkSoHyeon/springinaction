@@ -10,7 +10,9 @@ public class BlankDisc implements CompactDisc {
     private String artist;
     private List<String> tracks;
 
+    public BlankDisc() {
 
+    }
 
     public CompactDisc sgtPeppers() {
         return new BlankDisc("Sgt. Pepper's Lonely Hearts Club Band",
@@ -48,6 +50,10 @@ public class BlankDisc implements CompactDisc {
         for(String track : tracks) {
             System.out.println("-Track : " + track);
         }
+    }
+
+    public void playTrack(int trackNumber) {
+
     }
 
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="trackCounter"
+          class="soundsystem.TrackCounter"/>
+
+    <bean id="cd"
+          class="soundsystem.BlankDisc">
+        <property name="title"
+                  value="Sgt. Pepper's Lonely Hearts Club Band"/>
+        <property name="artist"
+                  value="The Beatles"/>
+        <property name="tracks">
+            <list>
+                <value>music01</value>
+                <value>music02</value>
+                <value>music03</value>
+                <value>music04</value>
+                <value>music05</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="encoreableDelegate"
+          class="concert.DefaultEncoreable"
+
+    <aop:config>
+        <aop:aspect ref="trackCounter">
+            <aop:pointcut id="trackPlayed" expression="execution(*soundsystem.CompactDisc.playTrack(int)) and args(trackNumber)"/>
+            <aop:before pointcut-ref="trackPlayed"
+                        method="countTrack"/>
+        </aop:aspect>
+
+        <aop:aspect>
+            <!--default-impl="concert.DefaultEncoreable"-->
+            <aop:declare-parents types-matching="concert.Performance"
+                                 implement-interface="concert.Encoreable"
+                                 delegate-ref="encoreableDelegate"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

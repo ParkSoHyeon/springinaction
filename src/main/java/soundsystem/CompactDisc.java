@@ -1,5 +1,6 @@
 package soundsystem;
 
 public interface CompactDisc {
-    public void play();
+    void play();
+    void playTrack(int trackNumber);
 }

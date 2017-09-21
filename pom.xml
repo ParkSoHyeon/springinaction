@@ -48,6 +48,11 @@
       <artifactId>commons-dbcp</artifactId>
       <version>1.2.2</version>
     </dependency>
+      <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjrt</artifactId>
+          <version>1.6.10</version>
+      </dependency>
 
   </dependencies>
   <build>
